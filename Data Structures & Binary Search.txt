@@ -1,0 +1,372 @@
+#include <iostream>
+// Data Structure Binary Search Tree
+class node{
+    public:
+    int number;
+    node *left;
+    node *right;
+};
+
+void freeTree(node *root);
+void printTree(node *root);
+
+bool search (node *tree, int number);
+
+int main() {
+
+// Tree of size 0
+    node *tree = NULL;
+
+// Add number to list
+    node *n = (node*)malloc(sizeof(node));
+    if (n == NULL){
+        return 1;
+    }else{
+        n->number = 2;
+        n->left = NULL;
+        n->right = NULL;
+        tree = n;
+    }
+
+// Add number to list
+    n = (node*)malloc(sizeof(node));
+    if (n == NULL){
+        // freeTree();
+        return 1;
+    }else{
+        n->number = 1;
+        n->left = NULL;
+        n->right = NULL;
+        tree->left = n;
+    }
+
+// Add number to list
+    n = (node*)malloc(sizeof(node));
+    if (n == NULL){
+        // freeTree();
+        return 1;
+    }else{
+        n->number = 3;
+        n->left = NULL;
+        n->right = NULL;
+        tree->right = n;
+    }
+// Print Tree
+    printTree(tree);
+
+// Free Tree
+    freeTree(tree);
+
+return 0;
+}
+
+
+void freeTree(node *root){
+    if (root == NULL){
+        return;
+    }else{
+        freeTree(root->left);
+        freeTree(root->right);
+        free(root);
+    }
+}
+
+void printTree(node *root){
+    if (root == NULL){
+        return;
+    }else{
+        printTree(root->left);
+        std::cout << root->number;
+        printTree(root->right);
+    }
+}
+
+bool search (node *tree, int number){
+    if(tree == NULL){
+        return false;
+    }else if (number < tree->number){
+        return search(tree->left, number);
+    }else if (number > tree->number){
+        return search(tree->right, number);
+    }
+    }else{
+        return true;
+    }
+}
+
+
+
+
+
+
+
+#include <iostream>
+
+int main() {
+
+//Dynamically allocate array of size 3
+    int *list = (int*)malloc(3*sizeof(int));
+
+    if (list == NULL){
+        return 1;
+    }
+
+//Assign 3 ints to array
+    list[0] = 1;
+    list[1] = 2;
+    list[2] = 3;
+/*
+Old
+//Allocate new array of size 4
+    int *tmp = (int*)malloc(4*sizeof(int));
+    if (tmp == NULL){
+        free(list);
+        return 1;
+    }
+
+//Copy old array into new array
+    for (int i = 0; i<3; i++){
+        tmp[i] = list[i];
+    }
+    
+//Hard code fourth int to the new array
+    tmp[3] = 4;
+
+//Free old array
+    free(list);
+
+//Remember new array|Rename
+    list = tmp;
+
+//Print new array
+    for (int i = 0; i < 4; i++){
+        std::cout << list[i] << "\n";
+    }
+*/
+
+//New
+//Resize new array to be of size 4
+    int *tmp = (int*)realloc(list,4*sizeof(int));
+    if (tmp == NULL){
+        free(list);
+        return 1;
+    }
+
+//Hard code fourth int to the new array
+    tmp[3] = 4;
+
+//Remember new array|Rename
+    list = tmp;
+
+//Free new array
+    free(list);
+
+return 0;
+}
+
+
+
+
+
+
+
+
+
+#include <iostream>
+
+class node{
+    public:
+    int number;
+    node *next;
+};
+
+int main() {
+
+node *list = NULL;
+node *n = (node*)malloc(sizeof(node));
+
+if (n != NULL){
+    n->number = 1;
+}
+if (n != NULL){
+    n->next = NULL;
+}
+
+list = n;
+
+return 0;
+}
+
+
+
+
+
+
+
+
+#include <iostream>
+
+class node{
+    public:
+    int number;
+    node *next;
+};
+
+int main() {
+
+// List of size 0
+    node *list = NULL;
+
+// Add number to list
+    node *n = (node*)malloc(sizeof(node));
+    if (n == NULL){
+        return 1;
+    }else{
+        n->number = 1;
+        n->next = NULL;
+    }
+
+// Update list to point to new node
+    list = n;
+
+// Add a number to new list
+    n = (node*)malloc(sizeof(node));
+    if (n == NULL){
+        free(list);
+        return 1;
+    }else{
+    n->number = 2;
+    n->next = NULL;
+    list->next = n;
+    }
+
+// Add a number to new list
+    n = (node*)malloc(sizeof(node));
+    if (n == NULL){
+        free(list->next);
+        free(list);
+        return 1;
+    }else{
+    n->number = 3;
+    n->next = NULL;
+    list->next->next = n;
+    }
+
+// Print numbers
+    for (node *tmp = list; tmp != NULL; tmp = tmp -> next){
+        std::cout << tmp->number;
+    }
+
+// Free list
+    while(list != NULL){
+        node *tmp = list -> next;
+        free(list);
+        list = tmp;
+    }
+
+return 0;
+}
+
+
+
+
+
+
+#include <iostream>
+// Data Structure Binary Search Tree
+class node{
+    public:
+    int number;
+    node *left;
+    node *right;
+};
+
+void freeTree(node *root);
+void printTree(node *root);
+
+bool search (node *tree, int number);
+
+int main() {
+
+// Tree of size 0
+    node *tree = NULL;
+
+// Add number to list
+    node *n = (node*)malloc(sizeof(node));
+    if (n == NULL){
+        return 1;
+    }else{
+        n->number = 2;
+        n->left = NULL;
+        n->right = NULL;
+        tree = n;
+    }
+
+// Add number to list
+    n = (node*)malloc(sizeof(node));
+    if (n == NULL){
+        // freeTree();
+        return 1;
+    }else{
+        n->number = 1;
+        n->left = NULL;
+        n->right = NULL;
+        tree->left = n;
+    }
+
+// Add number to list
+    n = (node*)malloc(sizeof(node));
+    if (n == NULL){
+        // freeTree();
+        return 1;
+    }else{
+        n->number = 3;
+        n->left = NULL;
+        n->right = NULL;
+        tree->right = n;
+    }
+// Print Tree
+    printTree(tree);
+
+// Free Tree
+    freeTree(tree);
+
+return 0;
+}
+
+
+void freeTree(node *root){
+    if (root == NULL){
+        return;
+    }else{
+        freeTree(root->left);
+        freeTree(root->right);
+        free(root);
+    }
+}
+
+void printTree(node *root){
+    if (root == NULL){
+        return;
+    }else{
+        printTree(root->left);
+        std::cout << root->number;
+        printTree(root->right);
+    }
+}
+
+bool search (node *tree, int number){
+    if(tree == NULL){
+        return false;
+    }else if (number < tree->number){
+        return search(tree->left, number);
+    }else if (number > tree->number){
+        return search(tree->right, number);
+    }
+    }else{
+        return true;
+    }
+}
+
+
+
